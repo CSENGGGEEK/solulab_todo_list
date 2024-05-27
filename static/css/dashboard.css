@@ -160,12 +160,12 @@ p {
 }
 
 .edit-btn:before {
-    background-image: url('img/edit_icon.jpg'); /* Replace with your edit icon */
+    background-image: url('/img/edit_icon.jpg'); /* Replace with your edit icon */
     background-size: cover;
 }
 
 .delete-btn:before {
-    background-image: url('img/delete_icon.jpg'); /* Replace with your delete icon */
+    background-image: url('/img/delete_icon.jpg'); /* Replace with your delete icon */
     background-size: cover;
 }
 
