@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+}
+
+#root {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(46, 8, 95);
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border: 5px;
+    border-style: hidden;
+    width: 40%;
+    height: 50%;
+    border-radius: 5px;
+    background-color: rgb(97, 8, 132);
+    padding: 20px 20px 20px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: white;
+}
+
+.input-contain {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 25%;
+}
+
+.placeholdertext {
+    position: absolute;
+    pointer-events: none;
+    top: 50%;
+    left: 7%;
+    transform: translateY(-50%);
+    color: #999;
+    transition: all 0.3s ease;
+}
+
+.formelems {
+    height: 45%;
+    width: 95%;
+    border-radius: 15px;
+    font-size: 1.6rem;
+    color: black;
+    padding: 5px 5px 5px 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease; /* Add transition for border color */
+}
+
+/* Change border color and add box shadow on focus */
+.formelems:focus {
+    outline-color: #000;
+    outline-width: 2px;
+    outline-style: solid;
+    border-color: #4285f4;
+    outline-offset: 7px;
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.25);
+}
+
+/* Move label up and change its color on focus */
+.formelems:focus + .placeholdertext{
+    top: 30px; /* Adjust the distance from the input */
+    font-size: 18px;
+    color: #000;
+    background-color: rgb(97, 8, 132);
+    backface-visibility: hidden;
+    z-index: 1;
+}
+
+input[type='submit'] {
+    width: 95%;
+    height: 40%;
+    font-size: large;
+    align-self: center;
+    background-color: rgb(46, 8, 95);
+    border: 0px solid transparent;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Add transition for transform property */
+}
+
+/* Custom animation for input[type='submit'] on hover */
+input[type='submit']:hover {
+    transform: scale(1.05); /* Scale up by 5% */
+}

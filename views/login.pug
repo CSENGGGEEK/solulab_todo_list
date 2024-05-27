@@ -1,0 +1,77 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='css/login.css')
+    title Login
+  body
+    #root
+      form(id='login-form',method='post', action='/login', enctype='multipart/form-data')
+        h1 Login
+        .input-contain
+          input(type='email',id='email', name='email', class='formelems', aria-labelledby='placeholderemail')
+          label(for='email', class='placeholdertext', id='placeholderemail') Email
+        .input-contain
+          input(type='password', id='password' ,name='password', class='formelems', aria-labelledby='placeholderpassword')
+          label(for='password', class='placeholdertext', id='placeholderpassword') Password
+        .input-contain
+          input(type='submit' value="Login") 
+
+    script.
+      document.addEventListener('DOMContentLoaded', function () {
+        const loginForm = document.getElementById('login-form');
+        const errorMessage = document.getElementById('errorMessage');
+
+        loginForm.addEventListener('submit', async function (event) {
+          event.preventDefault();
+
+          const email = document.querySelector('#email').value;
+          const password = document.querySelector('#password').value;
+
+          try {
+            const response = await fetch('/api/auth/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ email, password })
+            });
+
+            if (!response.ok) {
+              const errorData = await response.json();
+              throw new Error(errorData.errors[0].msg);
+            }
+
+            const responseData = await response.json();
+            const token = responseData.token;
+
+            localStorage.setItem('token', token);
+
+            await fetchData('/api/dashboard');
+          } catch (error) {
+            errorMessage.textContent = error.message;
+          }
+        });
+      });
+
+      async function fetchData(url) {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(url, {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to fetch data');
+          }
+          window.location.href = "/api/dashboard"
+          
+          // Handle response data if needed
+        } catch (error) {
+          console.error(error.message);
+        }
+      }

@@ -1,0 +1,332 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header styles */
+header {
+    background-color: rgb(97, 8, 132);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    margin-right: auto;
+    font-size: 1.5rem;
+}
+
+#logout-btn {
+    position: absolute;
+    top: 1.5%;
+    right: 20px; /* Adjust as needed */
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+#welcomediv{
+    display: flex;
+    align-items: center;
+    height: 5vh;
+}
+
+h2{
+    position: relative;
+    top: 50%;
+    left: 2%;
+    color: #999;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    animation-name: 'writeinfinite';
+    animation-iteration-count: infinite;
+    animation-delay: 1ms;
+}
+
+/* Body styles */
+#taskdiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 2rem;
+}
+
+.column {
+    flex: 1;
+    background-color: white;
+    padding: 2rem;
+    height: 90vh;
+    overflow-y: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+
+
+.extlabel {
+    position: absolute;
+    background-color: rgb(97, 8, 132);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+ul {
+    padding: 2% 5% 2% 1%;
+    list-style-type: none;
+}
+.task-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+    background-color: #fff;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+}
+
+.task-content {
+    flex: 1;
+}
+
+h3 {
+    color: rgb(97, 8, 132);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #666;
+}
+
+.task-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.edit-btn,
+.delete-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.edit-btn i,
+.delete-btn i {
+    color: #666;
+    font-size: 1.5rem;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    transform: scale(1.2); /* Scale up on hover */
+}
+
+.edit-btn:before,
+.delete-btn:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+.edit-btn:before {
+    background-image: url('img/edit_icon.jpg'); /* Replace with your edit icon */
+    background-size: cover;
+}
+
+.delete-btn:before {
+    background-image: url('img/delete_icon.jpg'); /* Replace with your delete icon */
+    background-size: cover;
+}
+
+
+.plus-icon {
+    font-size: 2rem;
+}
+
+/* Button styles */
+.add-todo-button {
+    position: fixed;
+    bottom: 5rem;
+    right: 5rem;
+    background-color: rgb(46, 8, 95);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+/* Button animation on hover */
+.add-todo-button:hover {
+    transform: scale(1.1);
+}
+
+/* Animation */
+@keyframes writeinfinite {
+    0% {
+        content: '';
+    }
+    25% {
+        content: 'Hello';
+    }
+    50% {
+        content: 'Anonymous';
+    }
+    75% {
+        content: '!!';
+    }
+    85% {
+        content: 'You have a lot to do ';
+    }
+    100% {
+        content: 'today ...';
+    }
+}
+
+.empty-message {
+    top: 50%;
+    left: 50%;
+    display: none; /* Hide by default */
+    text-align: center;
+    color: #999;
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+/* Add media query for smaller screens */
+@media (max-width: 768px) {
+    .column{
+        margin-top: 2%;
+    }
+    #taskdiv{
+        flex-direction: column; /* Change direction to column */
+        height: 125vh;        
+
+        margin-top: 1rem; /* Add margin to separate columns */
+    }
+}
+
+/* Style for popup form container */
+#edit-todo-form-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 400px;
+  }
+
+
+/* Style for popup form container */
+#add-todo-form-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 400px;
+  }
+  
+  /* Style for modal content */
+  .modal-content {
+    padding: 20px;
+  }
+  
+  /* Style for close button */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #aaa;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+  }
+  
+  /* Style for form labels */
+  .modal-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    /* background-color: none; */
+    
+  }
+  
+  /* Style for form inputs and select */
+  .modal-content input[type="text"],
+  .modal-content input[type="date"],
+  .modal-content textarea,
+  .modal-content select {
+    width: calc(100% - 20px); /* Adjusting width to account for padding */
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  
+  /* Style for submit button */
+  .modal-content button[type="submit"] {
+    width: 100%;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 0; /* Adjusting padding to center text vertically */
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .modal-content button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  

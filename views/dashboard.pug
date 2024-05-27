@@ -1,0 +1,91 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='/css/dashboard.css')
+    script(src='/js/dashboard.js')
+    title Todo List Dashboard
+  body
+    header
+      .header-content
+        h1 Todo List
+        button#logout-btn Logout
+    #welcomediv
+      h2 Hello <span id="username">Anonymous</span>!! You have a lot to do ...
+    #taskdiv
+      .column
+        label(for='today',class='extlabel') TODAY
+        ul#today-tasks
+          // Add more list items as needed
+        p#empty-message Add some tasks
+      .column
+        label(for='upcoming',class='extlabel') UPCOMING
+        ul#upcoming-tasks
+          
+          // Add more list items as needed
+    button#add-todo-btn.add-todo-button(onclick="toggleFormPopup()") 
+      span.plus-icon +
+
+    // Popup form
+    #add-todo-form-popup.modal(style="display:none;")
+      .modal-content
+        span.close(onclick="toggleFormPopup()") &times;
+        h2 Add New Task
+        form#add-todo-form
+          .input-group
+            label(for='task-title') Task Title:
+            input(type='text', id='task-title', name='task-title', required)
+          .input-group
+            label(for='start-date') Start Date:
+            input(type='date', id='start-date', name='start-date', required)
+          .input-group
+            label(for='end-date') End Date:
+            input(type='date', id='end-date', name='end-date', required)
+          .input-group
+            label(for='description') Description:
+            textarea(id='description', name='description', rows='4', required)
+          .input-group
+            label(for='priority') Priority:
+            select(id='priority', name='priority', required)
+              option(value='Low') Low
+              option(value='Medium') Medium
+              option(value='High') High
+          .input-group
+            label(for='status') Status:
+            select(id='status', name='status', required)
+              option(value='Not Started') Not Started
+              option(value='In Progress') In Progress
+              option(value='Completed') Completed
+          button(type='submit', class='add-todo-btn') Add Task
+    #edit-todo-form-popup.modal(style="display:none;")
+      .modal-content
+        span.close(onclick="toggleEditFormPopup()") &times;
+        h2 Edit Existing Task
+        form#edit-todo-form
+          .input-group
+            label(for='task-title') Task Title:
+            input(type='text', id='edit-task-title', name='task-title', required)
+            input(type="text",visibility='hidden',id='task-id')
+          .input-group
+            label(for='start-date') Start Date:
+            input(type='date', id='edit-start-date', name='start-date', required)
+          .input-group
+            label(for='end-date') End Date:
+            input(type='date', id='edit-end-date', name='end-date', required)
+          .input-group
+            label(for='description') Description:
+            textarea(id='edit-description', name='description', rows='4', required)
+          .input-group
+            label(for='priority') Priority:
+            select(id='edit-priority', name='priority', required)
+              option(value='Low') Low
+              option(value='Medium') Medium
+              option(value='High') High
+          .input-group
+            label(for='status') Status:
+            select(id='edit-status', name='status', required)
+              option(value='Not Started') Not Started
+              option(value='In Progress') In Progress
+              option(value='Completed') Completed
+          button(type='submit', class='edit-todo-btn') Save Changes
